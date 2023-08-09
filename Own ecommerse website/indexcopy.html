@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecomm site</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css"></link>
+</head>
+<body>
+    <section class="slider">
+        <div class="slides">
+            <span class="slideName">Summer live is ON</span>
+            <span class="slideName">Get 50% OFF</span>
+            <span class="slideName">Buy 2 Get 1 offer soon</span>
+
+        </div>
+
+    </section>
+    <section class="header">
+        <div class="first">
+            <img src="./assets/5613334.png" height="50px" width="50px"/>
+        </div>
+        <div class="mid">
+            <ul  class="ul-list">
+                <li class="listNames options" id="allProducts">Strollers and other products</li>
+                <li class="listNames options" id="carseat">Car seats</li>
+                <li class="listNames options" id="stroller">Strollers</li>
+                <li class="listNames options" id="accessories">Accessories</li>
+            </ul>
+            <div class="dropdown">
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="end">
+            <div>
+                <ul class="ul-list">
+                    <li class="listNames" id="home">Home</li>
+                    <li class="listNames"><a href="#about">About</a></li>
+
+                    <li class="listNames"><a href="#support">Support</a></li>
+                </ul>
+            </div>
+            <button id="signIn">Sign in</button>
+        </div>
+        
+    </section>
+    <section class="second">
+        <input type="text" placeholder="Search for strollers" autocomplete="on"/>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span id="wish" id="wishList">Wishlist</span>
+        <i class="fa-regular fa-heart"></i>
+        <span class="count" id="wishCount">W</span>
+        <span id="cart">My Cart</span>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="count" id="cartCount">C</span>
+    </section>
+    <section class="main">
+        <div class="imgSliders">
+            <img class="imgSlider" src="./assets/Homepage-PIPAurbn_GL-en_230228.jpg"/>
+            <img class="imgSlider" src="./assets/Slide-3054-desktop-2023.jpg"/>
+            <img class="imgSlider" src="./assets/HomePageSlider_ADAC_DUALFIX_M_PLUS_desktop_3200x1400px.jpg"/>
+
+        </div>
+        <div id="about">
+            <div class="about-left">
+                <img src="./assets/about.jpeg"/>
+            </div>
+            <div class="about-right">
+                <h1>About </h1>
+                <h1>Sustainability - Protecting their future</h1>
+                <h3>Protecting what matters most: Our mission is to provide safe, comfortable, sustainable, and easy to use child mobility solutions. Just like we care for children and their safety around the globe, we very much care for the world they grow up in.</h3>
+            </div>
+        </div>
+        <div id="support">
+            
+                <h1>Contact</h1>
+                <h3>Whether you have a query, are in need of advice, or perhaps you have a great suggestion for us, we’d love to hear from you.</h3>
+                <h3>Email: contact@babycare.com</h3>
+            
+
+        </div>
+    </section>
+    <section class="allProducts"></section>
+    <section class="wishCartDisplay">
+        <div class="leftWish"></div>
+        <div class="rightWish"></div>
+    </section>
+    <script src="./script.js"></script>
+</body>
+</html>
+

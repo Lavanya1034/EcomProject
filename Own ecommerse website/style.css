@@ -1,0 +1,323 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.slider{
+    background-color: rgb(173, 196, 206);
+    height:50px;
+    cursor: pointer;
+
+}
+.slides{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:30%;
+    animation: slid 7s linear infinite;
+    color:black;
+    padding-top: 10px;
+}
+
+.slideName{
+    color:rgb(189, 7, 68);
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+@keyframes slid {
+    0%{
+        transform: translate(0);
+    }
+    100%{
+        transform: translate(-100%);
+    }
+    
+}
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(246, 238, 238);
+ 
+}
+.first{
+    display: flex;
+    flex-basis: 10%;
+    
+}
+.mid{
+    display: flex;
+    flex-basis: 70%;
+   
+}
+.end{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 40%;
+    gap:40px;
+
+}
+#signIn{
+    box-shadow: 4px 20px 10px rgb(0,0,0,0.1),
+                inset 1px 1px 1px 1px grey;
+    border-radius: 10px;
+    border:none;
+    padding:10px;
+    background-color: whitesmoke;
+    color:blue;
+    cursor: pointer;
+}
+.ul-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:50px;
+    cursor: pointer;
+}
+
+.listNames{
+    font-size: 20px;
+    font-weight: 100;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:black;
+    
+}
+.second{
+    margin-top: 10px;
+}
+.second input{
+    width:60% !important;
+}
+#wish{
+    height:20px;
+    color:blue;
+    cursor: pointer;
+    margin-left: 60%;
+
+}
+#cart{
+    height:20px;
+    color:blue;
+    cursor: pointer;
+    
+}
+.count{
+    margin-left: -0.2em !important;  
+    padding-right: 1%;
+    
+    
+}
+.main{
+    height:500px;
+    width:100%;
+    margin-top: 20px;
+
+}
+
+.imgSliders{
+    height:500px;
+    width:100%;
+    display: flex;
+    
+}
+
+
+.imgSlider{
+    width:100%;
+    height:500px;
+}
+
+#about{
+    
+    display: flex;
+    height:500px;
+    width:100%;
+    margin-top: 30px;
+    cursor: pointer;
+
+
+}
+.about-left{
+    display: flex;
+    flex-basis: 50%;
+}
+.about-right{
+    display: flex;
+    flex-basis: 50%;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: none;
+    margin: 0 40px;
+    gap:20px;
+}
+
+.about-right h3{
+    
+    font-weight: normal;
+}
+
+#support{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:600px;
+    width:100%;
+    flex-direction: column;
+    gap:30px;
+    margin:20px 40px;
+    background-color: gray;
+    cursor: pointer;;
+}
+#allProducts, #carseat, #stroller, #accessories{
+    cursor: pointer;
+}
+
+.allProducts{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height:500px;
+    width:100%;
+    margin-top: 20px;
+
+    background:rgb(230, 225, 225);
+    gap:30px;
+
+}  
+
+
+.pds{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap:10px;
+    background-color: white;
+    width: 30%;
+    border-radius: 5%;
+    padding:10px;
+    margin:10px;
+    box-shadow: 10px 10px 10px 5px rgb(56, 52, 52),
+                inset 2px 4px 1px rgb(182, 174, 174);
+}
+
+.pds h1{
+    color: blue;
+}
+
+#proImg{
+    height:40%;
+}
+.addToCart{
+    display: inline-block;
+    margin-top: 10px;
+    background-color: rgb(56, 145, 154);
+    color: white;
+    width:40%;
+    margin-left: 25%;
+    padding:5px;
+    cursor: pointer;
+
+}
+
+#plusMin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    padding: 20px;
+    font-size: 20px;
+
+}
+.plMi{
+    padding: 20px;
+    border-radius: 100%;
+    background-color: rgb(98, 91, 91);
+    color:white;
+    cursor: pointer;
+}
+.fa-trash{
+    margin-left: 46%;
+    color:red;
+    cursor: pointer;
+}
+.wishListProd{
+    margin-left: 90%;
+    cursor: pointer;
+    color:black;
+}
+.wishListColor{
+    color:red;
+}
+
+#wishCount, #cartCount{
+    color:white;
+  
+    background-color: red;
+}
+
+.wishEmptyDesign{
+    padding-top: 200px;
+    background-color: rgb(221, 188, 116);
+    font-size: 40px;
+}
+
+.wishCartDisplay{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height:500px;
+    width:100%;
+    margin:20px;
+    padding: 20px;
+
+} 
+
+.pdsWish{
+    width:80%;
+    
+}
+.leftWish{
+   
+    height:max-content;
+    width:50%;
+    margin-left: -500px !important;
+}
+.rightWish{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height:400px;
+    width:40%;
+    background-color: antiquewhite;
+    position:absolute;
+    margin-left: 800px;
+}
+.tot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:20px;
+}
+#wishListHead{
+    font-size: 40px;
+    color:blue;
+}
+.priceList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.priceHead{
+    width:300px;
+}
+.priceVal{
+    width:200px;
+}
+
+
