@@ -87,35 +87,30 @@
     
 }
 .second{
+    display: flex;
     margin-top: 10px;
 }
-.second input{
-    width:60% !important;
-}
-#wish{
-    height:20px;
-    color:blue;
-    cursor: pointer;
-    margin-left: 60%;
 
+.sec-sec{
+    margin-left: 60%;
+    width:20%;
+    padding-top: 25px;
 }
-#cart{
+
+#wish, #cart{
     height:20px;
     color:blue;
     cursor: pointer;
-    
 }
+
 .count{
     margin-left: -0.2em !important;  
     padding-right: 1%;
-    
-    
 }
 .main{
     height:500px;
     width:100%;
     margin-top: 20px;
-
 }
 
 .imgSliders{
@@ -168,10 +163,12 @@
     width:100%;
     flex-direction: column;
     gap:30px;
-    margin:20px 40px;
+    margin-top: 10px;
     background-color: gray;
-    cursor: pointer;;
+    cursor: pointer;
+
 }
+
 #allProducts, #carseat, #stroller, #accessories{
     cursor: pointer;
 }
@@ -211,7 +208,7 @@
 #proImg{
     height:40%;
 }
-.addToCart{
+.addToCart,.change{
     display: inline-block;
     margin-top: 10px;
     background-color: rgb(56, 145, 154);
@@ -243,7 +240,25 @@
     margin-left: 46%;
     color:red;
     cursor: pointer;
+    margin-bottom: 10px;
+    padding: 20px 0px;
 }
+.fa-trash:hover{
+    animation: big 1s linear infinite;
+    
+}
+@keyframes big {
+    0%{
+        transform: translate(0);
+
+    }
+    20%{
+        transform: scale(2);
+
+    }
+    
+}
+
 .wishListProd{
     margin-left: 90%;
     cursor: pointer;
@@ -264,6 +279,26 @@
     background-color: rgb(221, 188, 116);
     font-size: 40px;
 }
+.Done{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:30px;
+    background-color: rgb(116, 183, 221);
+    font-size: 40px;
+
+}
+#back{
+    background-color: red;
+    color:white;
+    padding: 20px;
+    cursor: pointer;
+}
+#back:hover{
+    background-color: aqua;
+    color: black;
+}
 
 .wishCartDisplay{
     display: flex;
@@ -282,20 +317,17 @@
 }
 .leftWish{
    
-    height:max-content;
+    height:440px;
     width:50%;
-    margin-left: -500px !important;
+    
 }
 .rightWish{
     display: flex;
     justify-content: center;
-    align-items: center;
-    
-    height:400px;
-    width:40%;
+    align-items: center; 
+    height:440px;
+    width:50%;
     background-color: antiquewhite;
-    position:absolute;
-    margin-left: 800px;
 }
 .tot{
     display: flex;
@@ -320,4 +352,84 @@
     width:200px;
 }
 
+#checkOut{
+    padding: 10px;
+    background-color: red;
+    color:white;
+    cursor: pointer;
+}
 
+#checkOut:hover{
+    background-color: aqua;
+    color: black;
+}
+
+@media only screen and (max-width:1235px){    
+    *{
+        box-sizing: border-box;
+        height: fit-content;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    body, .header, .slider{
+        height: fit-content;
+    }
+    
+    .header{
+        display: flex;
+        flex-direction: column;
+    }
+    .about-left{
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width:984px){    
+    .sec-sec{
+        margin-left: 5%;
+    }
+
+}
+@media only screen and (max-width:867px){    
+    .second{
+        display: flex;
+        flex-direction: column;
+        width:50vh;
+    }
+    .sec-sec{
+        width:60%;
+    }
+
+}
+
+@media only screen and (max-width:726px){    
+    #forMediaQu{
+        display: none;
+    }
+    .mid> .ul-list{
+        display: flex;
+        flex-direction: column;
+        gap:10px;
+    }
+    .plMi{
+        padding: 0;
+    }
+
+}
+
+@media only screen and (max-width:479px){
+    .end{
+        display: flex;
+        flex-direction: column;
+    }
+    .end> div>.ul-list{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        gap:10px;
+        width:100vh;
+    }
+
+    
+}

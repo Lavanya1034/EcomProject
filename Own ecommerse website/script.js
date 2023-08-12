@@ -165,15 +165,8 @@ home.addEventListener("click", () => {
 // their wishlist, cart etc details.
 //Note : While fetching from API- this storage has to be altered
 
-let proStored = JSON.parse(window.localStorage.getItem("pro1"));
-// proStored.forEach((upd) => {
+//------------------------------------------------------------------------
 
-//     upd.cartCountSetInd =0;
-//     console.log("zero")
-//     console.log(proStored)
-
-// });
-// window.localStorage.setItem("pro1", JSON.stringify(proStored));
 
 //array for products added to wishlist
 let productsAddedToWishList = [];
@@ -182,11 +175,33 @@ let wishProd; //to get wish indicator flag for all products for each tabs
 let wishCount = document.getElementById("wishCount");
 let cartCount = document.getElementById("cartCount");
 let cartProd = []; //array for cart products
+
+//----------------------------------------------------------------------------------
+
+// Note: 
+//Remove commented lines in the below block to set up local storage and 
+//once page is loaded succesfully- reverse the comment changes...
+
+// window.localStorage.setItem("pro1", JSON.stringify(proStored));
+
+let proStored = JSON.parse(window.localStorage.getItem("pro1"));
+
+// proStored.forEach((upd) => {
+
+//     upd.cartCountSetInd =0;
+//     console.log("zero")
+//     console.log(proStored)
+
+// });
+
 //window.localStorage.setItem("cart4", JSON.stringify(cartProd));
 //window.localStorage.setItem("cartCount1",JSON.stringify(0))
+
+//------------------------------------------------------------------------
+
+
 let cartStored = JSON.parse(window.localStorage.getItem("cart4"));
 let cCount = JSON.parse(window.localStorage.getItem("cartCount1"));
-console.log(cCount);
 cartCount.textContent = cCount; //initially zero
 
 if (cartStored.length > 0) {
@@ -294,7 +309,6 @@ function cartCountSet(prdToCart) {
       pd.cartCountSetInd = 1;
     }
   });
-  console.log(proStored);
   window.localStorage.setItem("pro1", JSON.stringify(proStored));
 }
 //--------------------------------------------------------------------------------
@@ -305,12 +319,16 @@ function priceTotal(productPrice) {
   let taxAmt = 0;
   let allWishPrice = 0;
   productPrice.forEach((eachPro) => {
-    price += eachPro.price * eachPro.cartCountSetInd;
+    if (wishCartDispInd == 2) {
+      price += eachPro.price * eachPro.cartCountSetInd;
+    } else {
+      price += eachPro.price;
+    }
   });
   if (price > 0) {
     shipAmt = Math.floor(price * 0.1);
     taxAmt = Math.floor(price * 0.2);
-    allWishPrice = price + shipAmt + taxAmt;
+    allWishPrice = (price + shipAmt + taxAmt).toFixed(2);
   }
   price = price.toFixed(2);
 
@@ -353,25 +371,18 @@ function priceTotal(productPrice) {
 }
 //-------------------------------------------------------------------------------
 function addToCart(cartPro) {
-  console.log(cartPro);
   let addToCartPro = document.querySelectorAll(".addToCart");
 
   //the below code will execute when this function is called from option tabs(all,strolles, etc)
   addToCartPro.forEach((cartEle, index) => {
     cartEle.addEventListener("click", () => {
       //for wishlist addtocart, this code won't get executed as already click event is captured
-      //let countOfcart = 0;
-      //let newProAddedToCart = false;
-      console.log("no");
       if (addToCartPro[index].textContent == "Add to Cart") {
-        console.log(cartProd);
         cartProd.push(cartPro[index]);
-        //countOfcart = cartProd.length;
         cartEle.textContent = "Added to cart";
         cartCountSet(cartPro[index]);
       } else {
         alert("Product already added to cart");
-        //countOfcart = cartProd.length + 1; //pro already in cart so count alone updated
       }
       cartCount.textContent = cartProd.length;
       window.localStorage.setItem("cart4", JSON.stringify(cartProd));
@@ -383,29 +394,21 @@ function addToCart(cartPro) {
   });
   //for wishlist, addtocart - the below condition satisfies
   if (wishCartDispInd == 1) {
-    //let countOfcart = 0;
-    //let newProAddedToCart = false;
-    if (!cartProd.includes(cartPro)) {
+    if (cartPro.cartCountSetInd == 0) {
       cartProd.push(cartPro);
-      console.log(cartProd);
-      //countOfcart = cartProd.length;
       cartCountSet(cartPro);
     } else {
       alert("Product already added to cart");
     }
     cartCount.textContent = cartProd.length;
-    console.log(cartProd);
     window.localStorage.setItem("cart4", JSON.stringify(cartProd));
     window.localStorage.setItem("cartCount1", JSON.stringify(cartProd.length));
-    console.log("called");
-    console.log(cartProd);
   }
 }
 //--------------------------------------------------------------------------------
 //function to remove the product if trash symbol is clicked
 function trashSymbol(prodInWishList) {
   //if any product is deleted from wishlist display
-  console.log("trashFirst");
   let trashSym1 = document.querySelector(".leftWish");
   let trashSym2 = trashSym1.children;
 
@@ -422,10 +425,7 @@ function trashSymbol(prodInWishList) {
           if (event.target.classList.contains("addToCart")) {
             //when Add to cart button is clicked from wishlist page(Mycart -addtocart is not required
             //to enabled)
-            console.log(prodInWishList[ind]);
             addToCart(prodInWishList[ind]);
-            console.log("returned");
-            console.log(cartProd);
           }
           proStored.forEach((upd) => {
             if (upd.id == prodInWishList[ind].id) {
@@ -433,8 +433,6 @@ function trashSymbol(prodInWishList) {
             }
           });
           prodInWishList.splice(ind, 1);
-          //cartProd.splice(ind, 1);
-          console.log(prodInWishList);
           wishDisplayView(prodInWishList);
           wishCount.textContent = prodInWishList.length;
           window.localStorage.setItem("pro1", JSON.stringify(proStored));
@@ -446,8 +444,6 @@ function trashSymbol(prodInWishList) {
           proStored.forEach((upd) => {
             if (upd.id == prodInWishList[ind].id) {
               upd.cartCountSetInd = 0;
-              console.log("zero");
-              console.log(proStored);
             }
           });
           window.localStorage.setItem("pro1", JSON.stringify(proStored));
@@ -461,36 +457,25 @@ function trashSymbol(prodInWishList) {
             JSON.stringify(prodInWishList.length)
           );
         }
-        console.log(proStored);
       }
     });
   });
-  console.log("trash");
 }
 //-------------------------------------------------------------------------------
 //function to add orr reduce product quantity
 function additionSub(proUpdAddDel) {
-  console.log(proUpdAddDel);
 
   let plMiLeft = document.querySelectorAll(".leftWish .pds");
-  //console.log(plMiLeft)
-
   let plMi = document.querySelectorAll(".plMi");
-  //console.log(plMi)
-  plMiLeft.forEach((elOrder, ProIndexUpdated) => {
-    console.log("check");
-    //console.log(ProIndexUpdated)
-    elOrder.addEventListener("click", (event) => {
-      console.log("check1111", event.target);
 
+  plMiLeft.forEach((elOrder, ProIndexUpdated) => {
+    elOrder.addEventListener("click", (event) => {
       //(Note:instead we can also call cartCountSet function to update the count)
       proStored.forEach((mainPro) => {
         if (mainPro.id === proUpdAddDel[ProIndexUpdated].id) {
-          console.log(mainPro.id);
           if (event.target.classList.contains("plus")) {
             //plus symbol is clicked-so add quantity
             mainPro.cartCountSetInd += 1;
-            console.log("addddddddddddddddddddddddd");
             proUpdAddDel[ProIndexUpdated].cartCountSetInd =
               mainPro.cartCountSetInd;
           } else if (event.target.classList.contains("min")) {
@@ -499,7 +484,6 @@ function additionSub(proUpdAddDel) {
               mainPro.cartCountSetInd -= 1;
               proUpdAddDel[ProIndexUpdated].cartCountSetInd =
                 mainPro.cartCountSetInd;
-              console.log("minnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
             } else {
               alert(
                 "Already only 1 item is present!! If need to delete click delete button"
@@ -507,10 +491,7 @@ function additionSub(proUpdAddDel) {
             }
           }
         }
-        console.log(proStored);
         window.localStorage.setItem("pro1", JSON.stringify(proStored));
-
-        console.log(proUpdAddDel);
         wishDisplayView(proUpdAddDel);
       });
     });
@@ -522,7 +503,6 @@ function additionSub(proUpdAddDel) {
 
 function wishDisplayView(productsAddedToWishListView) {
   //This is for wishlist view
-  console.log(productsAddedToWishListView);
   if (productsAddedToWishListView.length > 0) {
     allProducts.style.display = "none";
     //this is for display of wishlist block
@@ -535,31 +515,27 @@ function wishDisplayView(productsAddedToWishListView) {
     let pdsWish1 = Array.from(pdsWish0);
 
     //let pdsWish1 = document.querySelectorAll(".pds");
-    let addToCartProds = document.querySelectorAll(".addToCart");
-    console.log(productsAddedToWishListView);
-    productsAddedToWishListView.forEach((ds, ind8) => {
-      console.log(ds.cartCountSetInd);
-      if (ds.cartCountSetInd > 0) {
-        console.log(addToCartProds[ind8]);
-        addToCartProds[ind8].innerHTML = "Added to cart";
+    let addToCartProdsAlready = document.querySelectorAll(".addToCart");
+    productsAddedToWishListView.forEach((ds11, ind11) => {
+      if (ds11.cartCountSetInd > 0) {
+        addToCartProdsAlready[ind11].innerHTML = "Added to cart";
       }
     });
-
     pdsWish1.forEach((elem, indPro) => {
-      elem.classList.add("pdsWish");
-      if (wishCartDispInd == 1) {
-        elem.firstChild.style.visibility = "hidden";
-      } else if (wishCartDispInd == 2) {
-        addToCartProds[indPro].style.visibility = "hidden";
+      if (!elem.classList.contains("pdsWish")) {
+        elem.classList.add("pdsWish");
+      }
+
+      elem.firstChild.style.visibility = "hidden";
+      if (wishCartDispInd == 2) {
+        addToCartProdsAlready[indPro].style.visibility = "hidden";
         let plusMinus = document.createElement("div");
         plusMinus.setAttribute("id", "plusMin");
         plusMinus.innerHTML = `<i class="fa-solid fa-plus plMi plus"></i><h1 class="val"></h1><i class="fa-solid fa-minus plMi min"></i>`;
         elem.append(plusMinus);
         let val = document.querySelectorAll(".val");
-        console.log(productsAddedToWishListView[indPro]);
         val[indPro].textContent =
           productsAddedToWishListView[indPro].cartCountSetInd;
-        console.log(val);
       }
       let trash = document.createElement("div");
       trash.innerHTML = `<i class="fa-solid fa-trash wishDel"></i>`;
@@ -570,6 +546,27 @@ function wishDisplayView(productsAddedToWishListView) {
     if (wishCartDispInd == 2) {
       let wishListHead = document.getElementById("wishListHead");
       wishListHead.textContent = "Cart Summary";
+      let tot = document.querySelector(".tot");
+      let checkOut = document.createElement("button");
+      checkOut.textContent = "Check Out";
+      checkOut.setAttribute("id", "checkOut");
+      tot.append(checkOut);
+
+      checkOut.addEventListener("click", () => {
+        let main = document.querySelector(".main");
+        main.style.display = "none";
+        wishCartDisplay.style.display = "none";
+        allProducts.style.display = "flex";
+
+        allProducts.innerHTML = `<div class="Done">Checked out!! Your cart is empty now <button id="back">Continue Shopping</button><div>`;
+
+        allProducts.classList.add("done");
+
+        let back = document.getElementById("back");
+        back.addEventListener("click", () => {
+          window.location.reload();
+        });
+      });
     }
   } else {
     let main = document.querySelector(".main");
@@ -583,7 +580,6 @@ function wishDisplayView(productsAddedToWishListView) {
     }
     allProducts.classList.add("wishEmptyDesign");
   }
-  console.log("addupdate");
   additionSub(productsAddedToWishListView);
   trashSymbol(productsAddedToWishListView);
 }
@@ -616,7 +612,6 @@ tabs.forEach((element) => {
     //if already added to cart- change the add to cart text to "added to cart"
 
     let addToCartPro = document.querySelectorAll(".addToCart");
-    console.log(dispProd);
     dispProd.forEach((ds, ind8) => {
       if (ds.cartCountSetInd > 0) {
         addToCartPro[ind8].textContent = "Added to cart";
@@ -654,8 +649,6 @@ cart.addEventListener("click", () => {
       }
     });
   });
-  console.log(cartProd);
-  console.log(cartAddedProds);
 
   wishDisplayView(cartAddedProds);
 });
