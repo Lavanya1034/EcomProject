@@ -392,7 +392,7 @@ function addToCart(cartPro) {
       );
     });
   });
-  //for wishlist, addtocart - the below condition satisfies
+  //for wishlist, addtocart - the below condition satisfies!!!
   if (wishCartDispInd == 1) {
     if (cartPro.cartCountSetInd == 0) {
       cartProd.push(cartPro);
