@@ -179,23 +179,27 @@ let cartProd = []; //array for cart products
 //----------------------------------------------------------------------------------
 
 // Note: 
-//Remove commented lines in the below block to set up local storage and 
-//once page is loaded succesfully- reverse the comment changes...
+//The below code will reset the local storage to zero for all values like cart and wishlist
+//count.- This is done to make sure the site works fine for every first time as , 
+//if the local storage is not set in our storage, it may throw error.
+//if need to store cart and wishlist values in local storage means--
+//after first run, can comment out the below block of codes except proStored-getitem.
 
-// window.localStorage.setItem("pro1", JSON.stringify(proStored));
+
+window.localStorage.setItem("pro1", JSON.stringify(products));
 
 let proStored = JSON.parse(window.localStorage.getItem("pro1"));
 
-// proStored.forEach((upd) => {
+proStored.forEach((upd) => {
 
-//     upd.cartCountSetInd =0;
-//     console.log("zero")
-//     console.log(proStored)
+    upd.cartCountSetInd =0;
+    console.log("zero")
+    console.log(proStored)
 
-// });
+});
 
-//window.localStorage.setItem("cart4", JSON.stringify(cartProd));
-//window.localStorage.setItem("cartCount1",JSON.stringify(0))
+window.localStorage.setItem("cart4", JSON.stringify(cartProd));
+window.localStorage.setItem("cartCount1",JSON.stringify(0))
 
 //------------------------------------------------------------------------
 
@@ -392,10 +396,13 @@ function addToCart(cartPro) {
       );
     });
   });
+  console.log(wishCartDispInd)
   //for wishlist, addtocart - the below condition satisfies!!!
   if (wishCartDispInd == 1) {
+    console.log(cartPro.cartCountSetInd)
     if (cartPro.cartCountSetInd == 0) {
       cartProd.push(cartPro);
+      console.log(cartProd)
       cartCountSet(cartPro);
     } else {
       alert("Product already added to cart");
