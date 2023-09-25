@@ -1,5 +1,5 @@
 # EcomProject
-E-commerse site using vanilla Javascript(HTML,CSS,js). No frameworks or Bootstrap is used.
+E-commerse site using vanilla Javascript(HTML,CSS,js). Purely used all high level concepts in Javascript with DOM manipulation.
 
 This project is does not involve any frameworks like React.
 
